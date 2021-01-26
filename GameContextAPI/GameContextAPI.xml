@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GameContextAPI</name>
+    </assembly>
+    <members>
+        <member name="M:GameContextAPI.Controllers.LeaderBoardController.Get">
+            <summary>
+            Gets top 20 user in global leaderboard.
+            </summary>
+            <remarks>
+            
+            GET /leaderboard
+            </remarks>
+            <returns></returns>
+            <response code="200">Returns Top 20 user in Leaderboard</response>
+            <response code="204">Returns when leaderboard is null</response>
+        </member>
+        <member name="M:GameContextAPI.Controllers.LeaderBoardController.Get(System.String)">
+            <summary>
+            Gets top 20 user in country leaderboard for given country ISO Code.
+            </summary>
+            <remarks>
+            e.g. GET leaderboard/tr
+            </remarks>
+            <param name="country_iso_code"></param>
+            <returns></returns>
+            <response code="200">Returns Top 20 user in country leaderboard</response>
+            <response code="204">Returns when leaderboard is null</response>
+            <response code="404">Returns when country ISO is wrong</response>
+        </member>
+        <member name="M:GameContextAPI.Controllers.ScoreController.Submit(GameContextAPI.Models.ScoreModel)">
+             <summary>
+             Updates score of the given user 
+             </summary>
+             <param name="model"></param>
+             <remarks>
+             Sample Request
+             
+                 POST /score/submit
+                 {
+                      "score_worth": 20,
+                      "user_id": "7be24bf6-1f9b-4862-9e99-3b016802918d"
+                  }
+            
+             
+             
+             timestamp is updated automatically when a score submitted
+             </remarks>
+             <response code="200">Returns updated user</response>
+             <response code="404">Returns when user is not found</response>
+        </member>
+        <member name="M:GameContextAPI.Controllers.UserController.Create(GameContextAPI.Models.UserModel)">
+             <summary>
+             Creates a new user.
+             </summary>
+             <param name="user"></param>
+             <remarks>
+             Sample request:
+             
+             
+             
+                 POST /user/create
+                 {
+                      "points": 20.0,
+                      "display_name": "dae34",
+                      "country": "en"
+                  }
+            
+             
+             user_id is generated automatically for user
+             timestamp is generated automatically for user
+             
+             </remarks>
+             <returns>Returns the newly created user</returns>
+             <response code="201">Returns the newly created item</response>
+        </member>
+        <member name="M:GameContextAPI.Controllers.UserController.Profile(System.String)">
+            <summary>
+            Gets user profile by id sent from route.
+            </summary>
+            <remarks>
+            e.g. GET /user/profile/7be24bf6-1f9b-4862-9e99-3b016802918d
+            </remarks>
+            <param name="user_id"></param>
+            <response code="200">Returns requested user</response>
+            <response code="404">Returns when user_id is null</response>   
+            <response code="204">Returns when user is not found</response>
+        </member>
+    </members>
+</doc>
